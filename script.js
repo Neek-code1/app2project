@@ -1,122 +1,38 @@
-// ========================================
-// CINEFIND API FUNCTIONS
-// ========================================
+const API_KEY = "245f7f2a";
 
-
-// PUT YOUR OMDb API KEY HERE
-const API_KEY = "YOUR_API_KEY_HERE";
-
-
-// OMDb API URL
-const BASE_URL =
-  "https://www.omdbapi.com/";
-
-
-// ========================================
-// SEARCH MOVIES
-// ========================================
+const BASE_URL = "https://www.omdbapi.com/";
 
 async function searchMovies(movieName) {
 
-  try {
+  const response = await fetch(
+    `${BASE_URL}?apikey=${API_KEY}&s=${encodeURIComponent(movieName)}`
+  );
 
-    const response =
-      await fetch(
-        `${BASE_URL}?apikey=${API_KEY}&s=${encodeURIComponent(movieName)}`
-      );
+  const data = await response.json();
 
-
-    if (!response.ok) {
-
-      throw new Error(
-        "Unable to connect to movie database."
-      );
-
-    }
-
-
-    const data =
-      await response.json();
-
-
-    if (data.Response === "False") {
-
-      throw new Error(
-        data.Error || "No movies found."
-      );
-
-    }
-
-
-    return data.Search;
-
-
-  } catch (error) {
-
-    console.error(
-      "Movie Search Error:",
-      error
+  if (data.Response === "False") {
+    throw new Error(
+      data.Error || "No movies found."
     );
-
-
-    throw error;
-
   }
 
+  return data.Search || [];
 }
 
 
-
-// ========================================
-// GET INDIVIDUAL MOVIE DETAILS
-// ========================================
-
 async function getMovieDetails(imdbID) {
 
-  try {
+  const response = await fetch(
+    `${BASE_URL}?apikey=${API_KEY}&i=${imdbID}&plot=full`
+  );
 
-    const response =
-      await fetch(
-        `${BASE_URL}?apikey=${API_KEY}&i=${imdbID}&plot=full`
-      );
+  const data = await response.json();
 
-
-    if (!response.ok) {
-
-      throw new Error(
-        "Unable to load movie details."
-      );
-
-    }
-
-
-    const data =
-      await response.json();
-
-
-    if (data.Response === "False") {
-
-      throw new Error(
-        data.Error ||
-        "Movie information not found."
-      );
-
-    }
-
-
-    return data;
-
-
-  } catch (error) {
-
-    console.error(
-      "Movie Details Error:",
-      error
+  if (data.Response === "False") {
+    throw new Error(
+      data.Error || "Movie details not found."
     );
-
-
-    throw error;
-
   }
 
+  return data;
 }
