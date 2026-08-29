@@ -11,6 +11,33 @@ function App() {
           <a href="#movies">Browse</a>
         </div>
       </nav>
+      <main>
+  <section className="hero">
+    <div className="hero-content">
+      <p className="small-title">
+        DISCOVER YOUR NEXT FAVORITE
+      </p>
+
+      <h1>Search Movies & TV Shows</h1>
+
+      <p className="hero-text">
+        Find movies, series, and episodes instantly using the OMDb movie database.
+      </p>
+
+      <form id="searchForm" className="search-form">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search Batman, Avengers, Barbie..."
+        />
+
+        <button type="submit">
+          Search
+        </button>
+      </form>
+    </div>
+  </section>
+</main>
     </>
   );
 }
