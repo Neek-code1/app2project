@@ -40,6 +40,18 @@ function App() {
 </main>
     </>
   );
+  <div className="filter-container">
+  <label htmlFor="filter">
+    Filter:
+  </label>
+
+  <select id="filter">
+    <option value="">All</option>
+    <option value="movie">Movies</option>
+    <option value="series">Series</option>
+    <option value="episode">Episodes</option>
+  </select>
+</div>
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
