@@ -1,9 +1,17 @@
 function App() {
   return (
-    <div>
-      <h1>CineFind</h1>
-      <p>Search for your favorite movies</p>
-    </div>
+    <>
+      <nav className="navbar">
+        <div className="logo">
+          Cine<span>Find</span>
+        </div>
+
+        <div className="nav-links">
+          <a href="#">Home</a>
+          <a href="#movies">Browse</a>
+        </div>
+      </nav>
+    </>
   );
 }
 
